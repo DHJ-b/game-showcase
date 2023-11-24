@@ -1,8 +1,8 @@
 #pragma once
+#include "Logger.hpp"
+#include "Map.hpp"
 #include "SFML/Audio.hpp"
 #include "SFML/Graphics.hpp"
-#include "logger.h"
-#include "map.h"
 #include <memory>
 #include <unordered_map>
 class ResourceManager {

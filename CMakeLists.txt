@@ -8,13 +8,15 @@ string(TOLOWER ${CMAKE_BUILD_TYPE} build_dir)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin/${build_dir})
 enable_testing()
 message("CMAKE BUILD TYPE = ${CMAKE_BUILD_TYPE}")
-LIST(APPEND sources src/main.cpp 
-                    src/controller.cpp
-                    src/logger.cpp
-                    src/gamecontroller.cpp
-                    src/resourcemanager.cpp
-                    src/game.cpp
-                    src/map.cpp
+LIST(APPEND sources src/Main.cpp 
+                    src/Application.cpp
+                    src/Logger.cpp
+                    src/GameController.cpp
+                    src/ResourceManager.cpp
+                    src/Game.cpp
+                    src/Map.cpp
+                    src/MenuController.cpp
+                    src/IController.cpp
                     )
 foreach(source ${sources})
     message(${source})

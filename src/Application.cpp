@@ -1,11 +1,12 @@
-#include "controller.h"
+#include "Application.hpp"
+#include "GameController.hpp"
+#include "MenuController.hpp"
 #include "SFML/Graphics.hpp"
-#include "gamecontroller.h"
 #include <cstring>
 #include <exception>
 #include <fstream>
 #include <string>
-Controller::Controller(Logger *const logger, const std::string configPath)
+Application::Application(Logger *const logger, const std::string configPath)
     : logger(logger), path(configPath),
       manager(ResourceManager(config, logger)) {
   logger->log("config path: " + configPath, 2);
@@ -22,16 +23,16 @@ Controller::Controller(Logger *const logger, const std::string configPath)
   left = (sf::Keyboard::Scancode)(std::atoi(config["leftKey"].c_str()));
   down = (sf::Keyboard::Scancode)(std::atoi(config["downKey"].c_str()));
   controllers[(int)State::MAIN_MENU] =
-      std::make_unique<MainMenu>(state, logger, *window, config, manager);
+      std::make_unique<MainMenu>(logger, *window, config, manager);
   controllers[(int)State::GAME] =
-      std::make_unique<GameController>(state, logger, *window, config, manager);
+      std::make_unique<GameController>(logger, *window, config, manager);
   // controllers[]
   clock = sf::Clock();
 }
 
-Controller::~Controller() {}
+Application::~Application() {}
 
-void Controller::loadConfig(std::string const &path) {
+void Application::loadConfig(std::string const &path) {
   std::ifstream fin;
   try {
     fin.open(path);
@@ -58,7 +59,7 @@ void Controller::loadConfig(std::string const &path) {
   fin.close();
 }
 
-void Controller::run() {
+void Application::run() {
   sf::CircleShape shape(100.f);
   shape.setFillColor(sf::Color::Green);
 
@@ -71,7 +72,7 @@ void Controller::run() {
   }
 }
 
-void Controller::handleInput() {
+void Application::handleInput() {
   sf::Event event;
   while (window->pollEvent(event)) {
     if (event.type == sf::Event::Closed) {
@@ -94,45 +95,4 @@ void Controller::handleInput() {
         cur.pressEnter();
     }
   }
-}
-
-IController::IController(State &root, Logger *const logger,
-                         sf::RenderWindow &window,
-                         std::unordered_map<std::string, std::string> &config,
-                         ResourceManager &manager)
-    : root(root), logger(logger), window(window), config(config),
-      manager(manager) {}
-void IController::pressUp() {
-  logger->log("unimplemented Up handler triggered", 2);
-}
-void IController::pressDown() {
-  logger->log("unimplemented Down handler triggered", 2);
-}
-void IController::pressLeft() {
-  logger->log("unimplemented Left handler triggered", 2);
-}
-void IController::pressRight() {
-  logger->log("unimplemented Right handler triggered", 2);
-}
-void IController::pressEsc() {
-  logger->log("unimplemented Escape handler triggered", 2);
-}
-void IController::mouseUp() {
-  logger->log("unimplemented MouseUp handler triggered", 2);
-}
-void IController::mouseDown() {
-  logger->log("unimplemented MouseDown handler triggered", 2);
-}
-void IController::mouseMove(float x, float y) {
-  logger->log("unimplemented Moved handler triggered", 2);
-}
-MainMenu::MainMenu(State &root, Logger *const logger, sf::RenderWindow &window,
-                   std::unordered_map<std::string, std::string> &config,
-                   ResourceManager &manager)
-    : IController(root, logger, window, config, manager) {
-  logger->log("Main Screen created", 2);
-}
-void MainMenu::update(float delta) {}
-void IController::pressEnter() {
-  logger->log("unimplemented Enter handler triggered", 2);
 }

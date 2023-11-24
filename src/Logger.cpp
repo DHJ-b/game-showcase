@@ -1,4 +1,4 @@
-#include "logger.h"
+#include "Logger.hpp"
 
 TwoLevelLogger::TwoLevelLogger(std::ostream &normal, std::ostream &error,
                                int minLevel, int errorLevel)

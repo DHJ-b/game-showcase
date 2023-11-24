@@ -1,10 +1,10 @@
-#include "gamecontroller.h"
+#include "GameController.hpp"
 #include <cmath>
 GameController::GameController(
-    State &root, Logger *const logger, sf::RenderWindow &window,
+    Logger *const logger, sf::RenderWindow &window,
     std::unordered_map<std::string, std::string> &config,
     ResourceManager &manager)
-    : IController(root, logger, window, config, manager), SCALE(8),
+    : IController(logger, window, config, manager), SCALE(8),
       game(std::make_unique<Game>(logger, manager.requireMap("map1")))
 
 {

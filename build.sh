@@ -10,7 +10,7 @@ echo "- Binaries in ./bin/$sub_bin -"
 if test -z $(find ./bin/$sub_bin -name 'resources')
 then
   echo "- Created links for resources -"
-  ln -s resources bin/"$sub_bin"/resources
+  ln -s $(pwd)/resources $(pwd)/bin/"$sub_bin"/resources
 fi
 cd build
 ninja

@@ -1,4 +1,4 @@
-#include "map.h"
+#include "Map.hpp"
 
 Map::Map() {}
 Map::Map(Map &&other) { data = other.data; }

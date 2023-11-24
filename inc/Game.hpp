@@ -1,5 +1,5 @@
 #pragma once
-#include "resourcemanager.h"
+#include "ResourceManager.hpp"
 #include <functional>
 enum class Event {
   ENERGIZED,

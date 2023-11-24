@@ -1,6 +1,6 @@
 #pragma once
-#include "controller.h"
-#include "game.h"
+#include "Game.hpp"
+#include "IController.hpp"
 #include <SFML/Graphics/RectangleShape.hpp>
 #include <SFML/Graphics/Sprite.hpp>
 
@@ -33,7 +33,7 @@ private:
   const int MAX_SELECTED = 2;
 
 public:
-  GameController(State &root, Logger *const logger, sf::RenderWindow &window,
+  GameController(Logger *const logger, sf::RenderWindow &window,
                  std::unordered_map<std::string, std::string> &config,
                  ResourceManager &manager);
   void update(float delta) override;
