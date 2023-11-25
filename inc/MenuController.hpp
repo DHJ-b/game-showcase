@@ -4,7 +4,7 @@ class MainMenu : public IController {
 private:
 public:
   MainMenu(Logger *const logger, sf::RenderWindow &window,
-           std::unordered_map<std::string, std::string> &config,
+           std::unordered_map<std::string, std::string> const &config,
            ResourceManager &manager);
   void update(float delta) override;
 };

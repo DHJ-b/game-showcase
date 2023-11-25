@@ -1,7 +1,8 @@
 #include "IController.hpp"
-IController::IController(Logger *const logger, sf::RenderWindow &window,
-                         std::unordered_map<std::string, std::string> &config,
-                         ResourceManager &manager)
+IController::IController(
+    Logger *const logger, sf::RenderWindow &window,
+    std::unordered_map<std::string, std::string> const &config,
+    ResourceManager &manager)
     : logger(logger), window(window), config(config), manager(manager) {}
 void IController::pressUp() {
   logger->log("unimplemented Up handler triggered", 2);

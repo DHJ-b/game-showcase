@@ -1,6 +1,6 @@
 #include "MenuController.hpp"
 MainMenu::MainMenu(Logger *const logger, sf::RenderWindow &window,
-                   std::unordered_map<std::string, std::string> &config,
+                   std::unordered_map<std::string, std::string> const &config,
                    ResourceManager &manager)
     : IController(logger, window, config, manager) {
   logger->log("Main Screen created", 2);

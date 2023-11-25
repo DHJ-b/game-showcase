@@ -9,13 +9,13 @@ class IController {
 protected:
   Logger *const logger;
   sf::RenderWindow &window;
-  std::unordered_map<std::string, std::string> config;
+  std::unordered_map<std::string, std::string> const &config;
   ResourceManager &manager;
   // std::function<void(ApplicationEvent)> callback;
 
 public:
   IController(Logger *const logger, sf::RenderWindow &window,
-              std::unordered_map<std::string, std::string> &config,
+              std::unordered_map<std::string, std::string> const &config,
               ResourceManager &manager);
   virtual void update(float delta) = 0;
   virtual void pressUp();
